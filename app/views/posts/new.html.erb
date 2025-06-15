@@ -1,0 +1,15 @@
+<div class="w-full flex justify-center">
+  <div class="w-full max-w-md lg:max-w-md p-4 border rounded shadow-sm bg-white py-6 ">
+    <%= simple_form_for @post do |f| %>
+      <div class="flex justify-center">
+        <%= f.input :photo %>
+      </div>
+      <div>
+        <%= f.input :description %>
+      </div>
+      <div class="flex justify-center">
+        <%= f.submit 'Post', class: "rounded bg-blue-500 px-4 py-2 hover:bg-blue-700" %>
+      </div>
+    <% end %>
+  </div>
+</div>

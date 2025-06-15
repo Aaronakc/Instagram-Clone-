@@ -62,5 +62,6 @@ gem "tailwindcss-ruby", "~> 4.1"
 
 gem "tailwindcss-rails", "~> 4.2"
 gem 'bcrypt', '~> 3.1', '>= 3.1.20'
+gem 'simple_form', '~> 5.3'
 gem "image_processing", ">= 1.2"
 
