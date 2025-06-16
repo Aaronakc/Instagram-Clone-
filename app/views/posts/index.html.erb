@@ -6,20 +6,21 @@
         <%= image_tag post.user.photo, class:"rounded-lg object-cover" if post.user.photo.attached? %>
       </div>
 
-      <div class="font-bold text-xl mb-2">
-        <%= post.user.email.split('@').first if post.user %>
+      <div class="font-bold text-xl mb-2   ">
+        <%= post.user.email.split('@').first.capitalize if post.user %>
       </div>
 
-      <div>
-        <%= image_tag post.photo, class: 'md:max-w-[75%] mb-2' if post.photo.attached? %>
+      <div class="mb-2">
+        <%= image_tag post.photo, class: 'md:max-w-[50%] mb-2' if post.photo.attached? %>
       </div>
 
-      <div class="px-2">
+      <div class="px-2 mb-2">
         <%= post.description %>
       </div>
          
-
+      <div class="mb-2">
       <%= render partial: 'likes', locals: {post: post} %>
+      </div>
 
 
       <% if post.user == current_user %>
@@ -29,11 +30,13 @@
         </div>
       <% end %>
 
-      <div class='px-4 py-6 bg-slate-200'>
+      <div class='px-4 py-6 bg-slate-200 mb-2 '>
         <h4 class='text-center font-bold'>Comments</h4>
         <% post.comments.each do |comment| %>
           <div class="border border-gray-200 rounded mb-2 px-4 py-6">
-            <strong><%= comment.user.email.split('@').first %></strong>
+            <div>
+            <strong><%= comment.user.email.split('@').first %></strong>: 
+            </div>
             <div class="flex justify-between items-center text-gray-900">
               <%= comment.content %>
               <% if comment.user == current_user %>
@@ -45,8 +48,8 @@
       </div>
 
       <%= simple_form_for Comment.new, url: post_comments_path(post), method: :post do |f| %>
-        <%= f.input :content, label: 'Comment', placeholder: 'Add a comment...', label_html: {class: 'mt-4'}, input_html: {class: 'mt-2 md:max-w-[50%]'} %>
-        <%= f.submit 'Post', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' %>
+        <%= f.input :content, label: 'Comment', placeholder: 'Add a comment...', label_html: {class: 'flex items-center mt-2'}, input_html: {class: 'mt-2 w-full border-none outline-none focus:outline-none'} %>
+        <%= f.submit 'Post', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-full' %>
       <% end %>
    </div>
   <% end %>
