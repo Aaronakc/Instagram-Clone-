@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'posts#index'
   resources:posts do
-    resources:comments
+    resources:comments,only:[:create,:destroy]
   end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
