@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'posts#index'
   resources:posts do
-    resources:comments,only:[:create,:destroy]
+    resources :comments,only:[:create,:destroy]
+    resources :upvotes,only: :create,controller: 'posts/upvotes'
+    resources :downvotes,only: :create,controller: 'posts/downvotes'
   end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
