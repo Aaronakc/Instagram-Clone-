@@ -1,22 +1,36 @@
 <% content_for :title, "Showing user" %>
 
-<div class="md:w-2/3 w-full">
+<div class="w-full flex flex-col justify-center items-center gap-4 scroll-smooth">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <h1 class="font-bold text-4xl">Showing user</h1>
+  <h1 class="font-bold text-4xl text-gray-800">User Profile</h1>
 
-  # <%= render @user %>
-  <%= @user.email.split('@').first %>
+ 
+  Username:<%= @user.email.split('@').first %>
 
-  <strong>have <%= pluralize(@user.posts.count,'post') %></strong>
+  <div>
+  User have <strong> <%= pluralize(@user.posts.count,'post') %></strong>
+  </div>
   
-  <% @user.posts.each do |post| %>
-     <%= image_tag post.photo, class:'mb-4' %>
-  <% end %>
 
-  <%= link_to "Edit this user", edit_user_path(@user), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to users", users_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  
+   <div class="flex flex-col gap-2 justify-center items-center">
+    <h2 class="text-xl font-semibold mb-4 text-gray-800">Posts</h2>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3  ">
+      <% @user.posts.each do |post| %>
+        <div class=" bg-white border rounded-lg p-6 shadow-sm">
+          <%= image_tag post.photo, class: "rounded-xl object-cover w-full h-48" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+ <div class="md:flex flex-row  mt-5">
+  <%= link_to "Edit this user", edit_user_path(@user), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium mb-2" %>
+  <%= link_to "Back to users", users_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium mb-2" %>
   <%= button_to "Destroy this user", @user, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+</div>
 </div>

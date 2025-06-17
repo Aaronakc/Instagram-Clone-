@@ -1,14 +1,18 @@
-<div class="w-full flex justify-center">
-  <div class="w-full max-w-md lg:max-w-md p-4 border rounded shadow-sm bg-white py-6 ">
+<div class="w-full flex justify-center px-4">
+  <div class="w-full max-w-md p-6 bg-white border border-gray-300 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Create a Post</h2>
+
     <%= simple_form_for @post do |f| %>
-      <div class="flex justify-center">
-        <%= f.input :photo %>
+      <div class="mb-4">
+        <%= f.input :photo, label: "Upload Photo", input_html: { class: "w-full mt-2 " } %>
       </div>
-      <div>
-        <%= f.input :description %>
+
+      <div class="mb-4">
+        <%= f.input :description, label: "Description", input_html: { class: "w-full border border-gray-300 rounded px-3 py-2" } %>
       </div>
+
       <div class="flex justify-center">
-        <%= f.submit 'Post', class: "rounded bg-blue-500 px-4 py-2 hover:bg-blue-700" %>
+        <%= f.button :submit, 'Post', class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-200 md:w-full flex justify-center" %>
       </div>
     <% end %>
   </div>
