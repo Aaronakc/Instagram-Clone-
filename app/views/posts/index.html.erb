@@ -39,27 +39,26 @@
         <h4 class='text-center font-bold'>Comments</h4>
         <div class="max-h-48 overflow-y-auto space-y-2  scroll-smooth">
         <% post.comments.each do |comment| %>
-          <div>
+          <div class="flex justify-between items-center text-gray-900" >
             <div>
             <strong><%= username(comment.user_email) %></strong>: 
+            <%= comment.content %>
             </div>
-            <div class="flex justify-between items-center text-gray-900">
-              <%= comment.content %>
+
               <% if comment.user == current_user %>
                 <%= button_to 'Delete', post_comment_path(post, comment), method: :delete, class: 'px-1 py-1 bg-red-600 hover:bg-red-700 rounded text-white text-sm' %>
-              <% end %>
-          
-              
+              <% end %> 
             </div>
-          </div>
         <% end %>
       </div>
       </div>
 
       <%= simple_form_for Comment.new, url: post_comments_path(post), method: :post do |f| %>
         <%= f.input :content, label: 'Comment', placeholder: 'Add a comment...', label_html: {class: 'flex items-center mt-2'}, input_html: {class: 'mt-2 w-full border-none outline-none focus:outline-none rounded'} %>
-        <%= f.submit 'Post Comment', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-full' %>
+        <div class='flex justify-end'>
+        <%= f.submit 'Post Comment', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' %>
       <% end %>
+      </div>
    </div>
   <% end %>
 </div>
