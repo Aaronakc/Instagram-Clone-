@@ -4,4 +4,10 @@ class Post < ApplicationRecord
   validates :photo, :description, presence: true
   has_many:comments,dependent: :destroy
   acts_as_votable
+
+  # def user_email
+  #   user.email
+  # end
+  #delegate user email
+  delegate :email,to: :user,prefix:true
 end
